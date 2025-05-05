@@ -7,6 +7,10 @@ TagManager:
   - Ground
   - Trash
   - Obstacle
+  - Portal
+  - Organic
+  - Anorganic
+  - B3
   layers:
   - Default
   - TransparentFX

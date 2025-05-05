@@ -1,84 +1,35 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ToolbarManager : MonoBehaviour
 {
-    public Image[] itemImages; // Drag ToolbarItem (6 slot)
-    private ItemData[] itemsInSlots = new ItemData[6];
+    public ToolbarSlot[] slots;
 
-    public int selectedSlot = 0;
-
-    private void Update()
+    // ToolbarManager.cs
+    public void UpdateSlot(int index, Item item)
     {
-        // Pilih slot dengan tombol 1 - 6
-        for (int i = 0; i < 6; i++)
+        if (index >= 0 && index < slots.Length)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+            if (slots[index] != null)
             {
-                SelectSlot(i);
-            }
-        }
-    }
-
-    public void AddItem(ItemData item)
-    {
-        for (int i = 0; i < itemsInSlots.Length; i++)
-        {
-            if (itemsInSlots[i] == null)
-            {
-                itemsInSlots[i] = item;
-                UpdateUI();
-                return;
-            }
-        }
-        Debug.Log("Inventory penuh!");
-    }
-
-    void UpdateUI()
-    {
-        for (int i = 0; i < itemImages.Length; i++)
-        {
-            if (itemsInSlots[i] != null)
-            {
-                itemImages[i].sprite = itemsInSlots[i].icon;
-                itemImages[i].enabled = true;
+                slots[index].SetItem(item);  // Ensure toolbarSlot is not null
             }
             else
             {
-                itemImages[i].enabled = false;
+                Debug.LogError($"Toolbar slot {index} is null.");
             }
         }
-    }
-
-    void SelectSlot(int index)
-    {
-        selectedSlot = index;
-        UpdateSlotHighlight();
-    }
-
-    void UpdateSlotHighlight()
-    {
-        for (int i = 0; i < itemImages.Length; i++)
+        else
         {
-            if (i == selectedSlot)
-            {
-                itemImages[i].transform.localScale = Vector3.one * 1.2f; // Membesar
-            }
-            else
-            {
-                itemImages[i].transform.localScale = Vector3.one; // Normal
-            }
+            Debug.LogError($"Index {index} is out of bounds for toolbarSlots.");
         }
     }
 
-    public ItemData GetSelectedItem()
-    {
-        return itemsInSlots[selectedSlot];
-    }
 
-    public void RemoveSelectedItem()
+    public void HighlightSlot(int index)
     {
-        itemsInSlots[selectedSlot] = null;
-        UpdateUI();
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].transform.localScale = (i == index) ? Vector3.one * 1.2f : Vector3.one;
+        }
     }
 }

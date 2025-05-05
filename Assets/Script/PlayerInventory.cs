@@ -1,55 +1,64 @@
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    [Header("Inventory Settings")]
-    [SerializeField] private int maxSlots = 6;
+    public Item[] items = new Item[6];
+    public int selectedSlot = 0;
 
-    private List<ItemData> items = new();
-    private ToolbarManager toolbarManager;
+    // Drag & drop ToolbarManager in Inspector or auto-find in Awake()
+    public ToolbarManager toolbar;
 
     private void Awake()
     {
-        // Ganti FindObjectOfType yang obsolete
-        toolbarManager = Object.FindFirstObjectByType<ToolbarManager>();
-        if (toolbarManager == null)
-            Debug.LogError("PlayerInventory: ToolbarManager tidak ditemukan di scene!");
+        // If not assigned, try to find the ToolbarManager in the scene
+        if (toolbar == null)
+        {
+            toolbar = Object.FindFirstObjectByType<ToolbarManager>();
+            if (toolbar == null)
+                Debug.LogError("PlayerInventory: ToolbarManager not found in scene!");
+        }
     }
 
-    /// <summary>
-    /// Tambah item baru, dan langsung update UI lewat ToolbarManager.AddItem(...)
-    /// </summary>
-    public void AddItem(ItemData newItem)
+    public bool AddItem(Item newItem)
     {
-        if (items.Count >= maxSlots)
+        for (int i = 0; i < items.Length; i++)
         {
-            Debug.Log("PlayerInventory: Inventory penuh!");
-            return;
+            if (items[i] == null)
+            {
+                items[i] = newItem;
+
+                // Make sure toolbar is not null before updating the UI
+                if (toolbar != null)
+                    toolbar.UpdateSlot(i, newItem);
+                else
+                    Debug.LogWarning("PlayerInventory.AddItem: toolbar is not assigned!");
+
+                return true;
+            }
         }
 
-        items.Add(newItem);
-        toolbarManager.AddItem(newItem);
+        Debug.Log("Inventory full!");
+        return false;
     }
 
-    /// <summary>
-    /// Hapus item pada slot yang sedang dipilih (public selectedSlot di ToolbarManager)
-    /// </summary>
-    public void RemoveSelectedItem()
+    public void RemoveItem(int index)
     {
-        int slot = toolbarManager.selectedSlot;
-        // Hapus dulu di UI
-        toolbarManager.RemoveSelectedItem();
-        // Sinkronkan list internal
-        if (slot >= 0 && slot < items.Count)
-            items.RemoveAt(slot);
+        if (index < 0 || index >= items.Length) return;
+
+        items[index] = null;
+        if (toolbar != null)
+            toolbar.UpdateSlot(index, null);
     }
 
-    /// <summary>
-    /// (Opsional) Ambil data item dari slot yang sedang dipilih
-    /// </summary>
-    public ItemData GetSelectedItem()
+    public Item GetSelectedItem()
     {
-        return toolbarManager.GetSelectedItem();
+        return items[selectedSlot];
+    }
+
+    public void SetSelectedSlot(int index)
+    {
+        selectedSlot = index;
+        if (toolbar != null)
+            toolbar.HighlightSlot(index);
     }
 }

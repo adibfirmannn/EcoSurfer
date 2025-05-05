@@ -1,68 +1,73 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections.Generic;
 
-public class SpawnerManager : MonoBehaviour
+public class SpawnManager : MonoBehaviour
 {
-    [Header("References")]
-    public GameObject player;
-    public Transform spawnParent;         // assign GameObject kosong di scene
-
-    [Header("Prefabs")]
-    public GameObject[] trashPrefabs;
     public GameObject[] obstaclePrefabs;
+    public GameObject[] trashPrefabs;
+    public GameObject[] portalPrefabs;
 
-    [Header("Spawn Settings")]
-    public float spawnDistance = 30f;
-    public float spawnInterval = 10f;
-    public float spawnY = 1f;             // Naikkan spawn di atas ground
-    public float laneOffset = 3f;
+    public Transform player;
+    public float spawnZ = 30f;
+    public float spawnInterval = 15f;
 
-    private float nextSpawnZ;
+    private int maxTrash = 10;
+    private int trashSpawned = 0;
+    private int trashSinceLastPortal = 0;
+    private List<GameObject> activeObjects = new List<GameObject>();
+
+    private float lastSpawnZ;
 
     void Start()
     {
-        nextSpawnZ = player.transform.position.z + spawnDistance;
+        lastSpawnZ = player.position.z;
     }
 
     void Update()
     {
-        if (player.transform.position.z + spawnDistance > nextSpawnZ)
+        if (player.position.z + spawnZ > lastSpawnZ)
         {
-            SpawnRow();
-            nextSpawnZ += spawnInterval;
+            SpawnRow(lastSpawnZ + spawnInterval);
+            lastSpawnZ += spawnInterval;
         }
     }
 
-    void SpawnRow()
+    void SpawnRow(float zPos)
     {
-        if ((trashPrefabs.Length == 0) && (obstaclePrefabs.Length == 0))
-        {
-            Debug.LogError("SpawnerManager: Belum assign prefab!");
-            return;
-        }
-
+        int obstacleCount = Random.Range(1, 4); // 1 to 3 obstacles
         List<int> usedLanes = new List<int>();
-        int count = Random.Range(1, 3);
 
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < obstacleCount; i++)
         {
-            int lane = Random.Range(0, 3);
-            while (usedLanes.Contains(lane))
-                lane = Random.Range(0, 3);
+            int lane;
+            do
+            {
+                lane = Random.Range(-1, 2); // -1 = left, 0 = center, 1 = right
+            } while (usedLanes.Contains(lane));
             usedLanes.Add(lane);
 
-            Vector3 pos = new Vector3(
-                (lane - 1) * laneOffset,
-                spawnY,
-                nextSpawnZ
-            );
+            Vector3 pos = new Vector3(lane * 2f, 1.3f, zPos);
+            GameObject obj = Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], pos, Quaternion.identity);
+            activeObjects.Add(obj);
+        }
 
-            GameObject prefab = (Random.value < 0.7f && trashPrefabs.Length > 0)
-                ? trashPrefabs[Random.Range(0, trashPrefabs.Length)]
-                : obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
+        if (trashSpawned < maxTrash)
+        {
+            int lane = Random.Range(-1, 2);
+            Vector3 trashPos = new Vector3(lane * 2f, 2f, zPos + 2f);
+            GameObject trash = Instantiate(trashPrefabs[Random.Range(0, trashPrefabs.Length)], trashPos, Quaternion.identity);
+            trashSpawned++;
+            trashSinceLastPortal++;
+            activeObjects.Add(trash);
+        }
 
-            Debug.Log($"Spawning {prefab.name} at {pos}");
-            Instantiate(prefab, pos, Quaternion.identity, spawnParent);
+        if (trashSinceLastPortal >= 6 && trashSpawned > 0)
+        {
+            int lane = Random.Range(-1, 2);
+            Vector3 portalPos = new Vector3(lane * 2f, 3f, zPos + 5f);
+            GameObject portal = Instantiate(portalPrefabs[Random.Range(0, portalPrefabs.Length)], portalPos, Quaternion.identity);
+            activeObjects.Add(portal);
+            trashSinceLastPortal = 0;
         }
     }
 }
