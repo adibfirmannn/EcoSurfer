@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class SpawnManager : MonoBehaviour
@@ -17,14 +18,24 @@ public class SpawnManager : MonoBehaviour
     private List<GameObject> activeObjects = new List<GameObject>();
 
     private float lastSpawnZ;
+    private bool gameStarted = false;
 
     void Start()
     {
+        StartCoroutine(StartSpawningAfterDelay(5f)); // tunggu 20 detik
+    }
+
+    IEnumerator StartSpawningAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         lastSpawnZ = player.position.z;
+        gameStarted = true;
     }
 
     void Update()
     {
+        if (!gameStarted) return;
+
         if (player.position.z + spawnZ > lastSpawnZ)
         {
             SpawnRow(lastSpawnZ + spawnInterval);
@@ -34,7 +45,7 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnRow(float zPos)
     {
-        int obstacleCount = Random.Range(1, 4); // 1 to 3 obstacles
+        int obstacleCount = Random.Range(1, 4);
         List<int> usedLanes = new List<int>();
 
         for (int i = 0; i < obstacleCount; i++)
@@ -42,7 +53,7 @@ public class SpawnManager : MonoBehaviour
             int lane;
             do
             {
-                lane = Random.Range(-1, 2); // -1 = left, 0 = center, 1 = right
+                lane = Random.Range(-1, 2);
             } while (usedLanes.Contains(lane));
             usedLanes.Add(lane);
 

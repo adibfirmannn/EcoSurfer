@@ -6,13 +6,13 @@ public class ItemPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            bool success = other.GetComponent<PlayerInventory>().AddItem(item);
-            if (success)
-            {
-                Destroy(gameObject);
-            }
-        }
+        //if (other.CompareTag("Player"))
+        //{
+        //    bool success = other.GetComponent<PlayerInventory>().AddItem(item);
+        //    if (success)
+        //    {
+        //        Destroy(gameObject);
+        //    }
+        //}
     }
 }

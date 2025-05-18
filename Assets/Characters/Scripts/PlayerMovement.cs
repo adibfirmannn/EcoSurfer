@@ -1,33 +1,64 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float forwardSpeed = 5f;        // Kecepatan maju
-    public float laneDistance = 3f;         // Jarak antar jalur
-    public float laneSwitchSpeed = 10f;     // Kecepatan pindah jalur
-    public float sideOffset = 1f;           // Koreksi posisi samping
-    public float jumpForce = 7f;            // Kekuatan loncat
-    public float gravityModifier;
+    public float forwardSpeed = 5f;
+    public float laneDistance = 3f;
+    public float laneSwitchSpeed = 5f;
+    public float sideOffset = 1f;
+    public float jumpForce = 7f;
+    public float gravityModifier = 1f;
 
-    private int targetLane = 1;             // 0 = kiri, 1 = tengah, 2 = kanan
+    [Header("Ground Check")]
+    public Transform groundChecker;
+    public float groundCheckRadius = 0.3f;
+    public LayerMask groundLayer;
+
+    private int targetLane = 1; // 0 = kiri, 1 = tengah, 2 = kanan
     private Rigidbody rb;
     private Animator anim;
     private bool isGrounded;
+    private bool isGameOver = false;
+
+    private int lastScoreCheckpoint = 0;
+    public int scoreStep = 100;
+    public float speedIncrement = 1f;
+
+    // Roll
+    private bool isRolling = false;
+    public float rollDuration = 1f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         Physics.gravity *= gravityModifier;
+
+        if (groundChecker == null)
+        {
+            Debug.LogWarning("GroundChecker is not assigned.");
+        }
     }
 
     void Update()
     {
+        if (isGameOver) return;
+
         MoveForward();
         HandleLaneSwitch();
         HandleJump();
+        HandleRoll();
+        CheckGrounded();
         UpdateAnimationStates();
+        CheckSpeedIncrease();
+    }
+
+    void FixedUpdate()
+    {
+        // Optional
+        // CheckGrounded();
     }
 
     void MoveForward()
@@ -61,42 +92,87 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !isRolling)
         {
+            anim.ResetTrigger("JumpTrig");
+            anim.SetTrigger("JumpTrig");
             Jump();
-            isGrounded = false;
-            anim.SetTrigger("JumpTrig"); // Set animasi jump true
         }
     }
 
     void Jump()
     {
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z); // Reset Y velocity
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        //rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
+    }
+
+    void HandleRoll()
+    {
+        if (Input.GetKeyDown(KeyCode.S) && isGrounded && !isRolling)
+        {
+            StartCoroutine(Roll());
+        }
+    }
+
+    IEnumerator Roll()
+    {
+        isRolling = true;
+        anim.SetTrigger("RollTrig");
+
+        CapsuleCollider col = GetComponent<CapsuleCollider>();
+        float originalHeight = col.height;
+        Vector3 originalCenter = col.center;
+
+        // Perkecil collider agar bisa melewati rintangan bawah
+        col.height = originalHeight / 2;
+        col.center = new Vector3(col.center.x, col.center.y - originalHeight / 4, col.center.z);
+
+        yield return new WaitForSeconds(rollDuration);
+
+        // Kembalikan collider ke ukuran semula
+        col.height = originalHeight;
+        col.center = originalCenter;
+
+        isRolling = false;
+    }
+
+    void CheckGrounded()
+    {
+        if (groundChecker != null)
+        {
+            isGrounded = Physics.CheckSphere(groundChecker.position, groundCheckRadius, groundLayer);
+        }
+        else
+        {
+            isGrounded = false;
+        }
     }
 
     void UpdateAnimationStates()
     {
-        if (isGrounded)
-        {
-            anim.SetBool("isJumping", false); // Balik ke run saat mendarat
-        }
+        anim.SetBool("isJumping", !isGrounded);
     }
 
-    // Cek menyentuh tanah pakai TAG
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
-            isGrounded = true;
+            isGameOver = true;
+            anim.SetTrigger("DeathTrig");
+            forwardSpeed = 0;
+            rb.linearVelocity = Vector3.zero;
+            ScoreManager.Instance.StopScoring();
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    void CheckSpeedIncrease()
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        int currentScore = ScoreManager.Instance.GetScore();
+        if (currentScore >= lastScoreCheckpoint + scoreStep)
         {
-            isGrounded = false;
+            forwardSpeed += speedIncrement;
+            lastScoreCheckpoint = currentScore;
+            Debug.Log("Speed increased! Current Speed: " + forwardSpeed);
         }
     }
 }
