@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -80,4 +81,68 @@ public class ScoreManager : MonoBehaviour
         score = 0;
         timer = 0f;
     }
+    // TAMBAHKAN ke existing ScoreManager.cs
+
+    [Header("Score Effects - EcoSurfer Addition")]
+    public GameObject scorePopupPrefab;
+    public Transform popupParent;
+
+    // Method untuk score popup effect
+    void ShowScorePopup(int points)
+    {
+        if (scorePopupPrefab != null && popupParent != null)
+        {
+            GameObject popup = Instantiate(scorePopupPrefab, popupParent);
+
+            // Set text dan warna berdasarkan positive/negative
+            Text popupText = popup.GetComponent<Text>();
+            if (popupText != null)
+            {
+                popupText.text = points > 0 ? "+" + points : points.ToString();
+                popupText.color = points > 0 ? Color.green : Color.red;
+            }
+
+            // Animate popup (fade out dan move up)
+            StartCoroutine(AnimatePopup(popup));
+        }
+    }
+
+    System.Collections.IEnumerator AnimatePopup(GameObject popup)
+    {
+        float duration = 1f;
+        float timer = 0f;
+
+        Vector3 startPos = popup.transform.position;
+        Vector3 endPos = startPos + Vector3.up * 50f;
+
+        CanvasGroup canvasGroup = popup.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+            canvasGroup = popup.AddComponent<CanvasGroup>();
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            float progress = timer / duration;
+
+            // Move up
+            popup.transform.position = Vector3.Lerp(startPos, endPos, progress);
+
+            // Fade out
+            canvasGroup.alpha = 1f - progress;
+
+            yield return null;
+        }
+
+        Destroy(popup);
+    }
+
+    // UPDATE existing AddScore method untuk include popup
+    // Tambahkan baris ini di akhir method AddScore yang sudah ada:
+    /*
+    // Show score popup effect
+    if (points != 0)
+    {
+        ShowScorePopup(points);
+    }
+    */
 }
