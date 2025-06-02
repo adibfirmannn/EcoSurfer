@@ -1,19 +1,24 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class TileManager : MonoBehaviour
 {
     [Header("Prefab Settings")]
-    public GameObject tilePrefab; 
+    public GameObject tilePrefab;
 
     [Header("Spawn Settings")]
     public int numberOfTiles = 5;
-    public float tileLength = 46f; 
+    public float tileLength = 46f;
     public Transform playerTransform;
 
     [Header("Advanced Settings")]
     public float safeZone = 120f;
-    public bool useRelativePosition = true; 
+    public bool useRelativePosition = true;
+
+    public GameObject newCityTilePrefab; // kota baru
+    public int switchAfterTiles = 5;     // jumlah tile sebelum pindah kota
+    private int tilesPassed = 0;         // counter tile yang dilewati
+
 
     private Vector3 prefabPosition;
     private Quaternion prefabRotation;
@@ -132,15 +137,26 @@ public class TileManager : MonoBehaviour
     {
         if (activeTiles.Count > numberOfTiles)
         {
-            // Hapus tile pertama yang sudah dilewati player
             if (activeTiles[0] != null)
                 Destroy(activeTiles[0]);
 
             activeTiles.RemoveAt(0);
 
-            //Debug.Log($"Tile dihapus. Jumlah tile aktif: {activeTiles.Count}");
+            tilesPassed++;
+            Debug.Log("Tiles passed: " + tilesPassed);
+
+            if (tilesPassed >= switchAfterTiles && newCityTilePrefab != null)
+            {
+                if (tilePrefab != newCityTilePrefab)
+                {
+                    tilePrefab = newCityTilePrefab;
+                    Debug.Log("Kota baru dimulai!");
+                }
+            }
         }
     }
+
+
 
     // Untuk debugging - panggil dari editor jika perlu
     //[ContextMenu("Reinitialize")]

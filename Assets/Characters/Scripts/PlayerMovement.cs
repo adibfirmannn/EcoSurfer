@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -60,6 +62,15 @@ public class PlayerMovement : MonoBehaviour
         // Optional
         // CheckGrounded();
     }
+
+    IEnumerator RestartGame()
+    {
+        yield return new WaitForSeconds(2f); // Tunggu 2 detik sebelum restart
+        UnityEngine.SceneManagement.SceneManager.LoadScene(
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
+        );
+    }
+
 
     void MoveForward()
     {
@@ -162,7 +173,9 @@ public class PlayerMovement : MonoBehaviour
             forwardSpeed = 0;
             rb.linearVelocity = Vector3.zero;
             ScoreManager.Instance.StopScoring();
+            StartCoroutine(RestartGame());
         }
+
     }
 
     void CheckSpeedIncrease()

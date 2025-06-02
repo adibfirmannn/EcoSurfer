@@ -1,0 +1,552 @@
+fileFormatVersion: 2
+guid: 7d83d34a666ca844eb6da78e5098f666
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: House_05(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15904
+      parentName: House_05(Clone)
+      position: {x: 109.48284, y: 8.976693, z: 13.2450695}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15914
+      parentName: House_05(Clone)
+      position: {x: 109.48284, y: 0, z: 13.2450695}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15916
+      parentName: House_05(Clone)
+      position: {x: 106.69657, y: 2.5364106, z: 15.345069}
+      rotation: {x: -0.7071068, y: 0.000000061817246, z: 0.000000061817246, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Group672
+      parentName: House_05(Clone)
+      position: {x: 106.23284, y: 6.3999987, z: 15.345069}
+      rotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15908
+      parentName: Group672
+      position: {x: 2.0999987, y: -3.25, z: 0.00000061035155}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15909
+      parentName: Group672
+      position: {x: 2.0999987, y: -3.25, z: 2.600001}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_169
+      parentName: Group672
+      position: {x: 3.5502331, y: 0, z: 0.49093872}
+      rotation: {x: -0.00000045237712, y: 0.7071068, z: 0.7071067, w: -0.0000004523771}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_170
+      parentName: Group672
+      position: {x: 1.7290955, y: 0, z: 0.49093872}
+      rotation: {x: -0.00000045237712, y: 0.7071068, z: 0.7071067, w: -0.0000004523771}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_171
+      parentName: Group672
+      position: {x: 0.6648181, y: -6.4949512, z: 0.49093872}
+      rotation: {x: 0.7071068, y: 0.00000039899206, z: 0.000000398992, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_172
+      parentName: Group672
+      position: {x: 2.4859557, y: -6.4949512, z: 0.49093872}
+      rotation: {x: 0.7071068, y: 0.00000039899206, z: 0.000000398992, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_173
+      parentName: Group672
+      position: {x: 0.0060424805, y: -0.87063473, z: 0.49093872}
+      rotation: {x: 0.5000003, y: -0.49999982, z: -0.4999997, w: 0.5000002}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_174
+      parentName: Group672
+      position: {x: 0.0060424805, y: -2.8091114, z: 0.49093872}
+      rotation: {x: 0.5000003, y: -0.49999982, z: -0.4999997, w: 0.5000002}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_175
+      parentName: Group672
+      position: {x: 0.0060424805, y: -4.6939354, z: 0.49093872}
+      rotation: {x: 0.5000003, y: -0.49999982, z: -0.4999997, w: 0.5000002}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_176
+      parentName: Group672
+      position: {x: 4.193998, y: -5.7760935, z: 0.49093872}
+      rotation: {x: 0.49999976, y: 0.5000003, z: 0.50000024, w: 0.49999967}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_177
+      parentName: Group672
+      position: {x: 4.193998, y: -3.8376172, z: 0.49093872}
+      rotation: {x: 0.49999976, y: 0.5000003, z: 0.50000024, w: 0.49999967}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_178
+      parentName: Group672
+      position: {x: 4.193998, y: -1.9527929, z: 0.49093872}
+      rotation: {x: 0.49999976, y: 0.5000003, z: 0.50000024, w: 0.49999967}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Group673
+      parentName: House_05(Clone)
+      position: {x: 106.23284, y: 3.3999982, z: 15.345069}
+      rotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15910
+      parentName: Group673
+      position: {x: 2.0999987, y: -3.25, z: 0.00000061035155}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15911
+      parentName: Group673
+      position: {x: 2.0999987, y: -3.25, z: 2.600001}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_179
+      parentName: Group673
+      position: {x: 3.5502331, y: 0, z: 0.49093872}
+      rotation: {x: -0.00000045237712, y: 0.7071068, z: 0.7071067, w: -0.0000004523771}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_180
+      parentName: Group673
+      position: {x: 1.7290955, y: 0, z: 0.49093872}
+      rotation: {x: -0.00000045237712, y: 0.7071068, z: 0.7071067, w: -0.0000004523771}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_181
+      parentName: Group673
+      position: {x: 0.6648181, y: -6.4949512, z: 0.49093872}
+      rotation: {x: 0.7071068, y: 0.00000039899206, z: 0.000000398992, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_182
+      parentName: Group673
+      position: {x: 2.4859557, y: -6.4949512, z: 0.49093872}
+      rotation: {x: 0.7071068, y: 0.00000039899206, z: 0.000000398992, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_183
+      parentName: Group673
+      position: {x: 0.0060424805, y: -0.87063473, z: 0.49093872}
+      rotation: {x: 0.5000003, y: -0.49999982, z: -0.4999997, w: 0.5000002}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_184
+      parentName: Group673
+      position: {x: 0.0060424805, y: -2.8091114, z: 0.49093872}
+      rotation: {x: 0.5000003, y: -0.49999982, z: -0.4999997, w: 0.5000002}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_185
+      parentName: Group673
+      position: {x: 0.0060424805, y: -4.6939354, z: 0.49093872}
+      rotation: {x: 0.5000003, y: -0.49999982, z: -0.4999997, w: 0.5000002}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_186
+      parentName: Group673
+      position: {x: 4.193998, y: -5.7760935, z: 0.49093872}
+      rotation: {x: 0.49999976, y: 0.5000003, z: 0.50000024, w: 0.49999967}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_187
+      parentName: Group673
+      position: {x: 4.193998, y: -3.8376172, z: 0.49093872}
+      rotation: {x: 0.49999976, y: 0.5000003, z: 0.50000024, w: 0.49999967}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_188
+      parentName: Group673
+      position: {x: 4.193998, y: -1.9527929, z: 0.49093872}
+      rotation: {x: 0.49999976, y: 0.5000003, z: 0.50000024, w: 0.49999967}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Group674
+      parentName: House_05(Clone)
+      position: {x: 106.23284, y: 0.39999878, z: 15.345069}
+      rotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15912
+      parentName: Group674
+      position: {x: 2.0999987, y: -3.25, z: 0.00000061035155}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15913
+      parentName: Group674
+      position: {x: 2.0999987, y: -3.25, z: 2.600001}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_189
+      parentName: Group674
+      position: {x: 3.5502331, y: 0, z: 0.49093872}
+      rotation: {x: -0.00000045237712, y: 0.7071068, z: 0.7071067, w: -0.0000004523771}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_190
+      parentName: Group674
+      position: {x: 1.7290955, y: 0, z: 0.49093872}
+      rotation: {x: -0.00000045237712, y: 0.7071068, z: 0.7071067, w: -0.0000004523771}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_191
+      parentName: Group674
+      position: {x: 0.6648181, y: -6.4949512, z: 0.49093872}
+      rotation: {x: 0.7071068, y: 0.00000039899206, z: 0.000000398992, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_192
+      parentName: Group674
+      position: {x: 2.4859557, y: -6.4949512, z: 0.49093872}
+      rotation: {x: 0.7071068, y: 0.00000039899206, z: 0.000000398992, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_193
+      parentName: Group674
+      position: {x: 0.0060424805, y: -0.87063473, z: 0.49093872}
+      rotation: {x: 0.5000003, y: -0.49999982, z: -0.4999997, w: 0.5000002}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_194
+      parentName: Group674
+      position: {x: 0.0060424805, y: -4.6939354, z: 0.49093872}
+      rotation: {x: 0.5000003, y: -0.49999982, z: -0.4999997, w: 0.5000002}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_195
+      parentName: Group674
+      position: {x: 4.193998, y: -5.7760935, z: 0.49093872}
+      rotation: {x: 0.49999976, y: 0.5000003, z: 0.50000024, w: 0.49999967}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_196
+      parentName: Group674
+      position: {x: 4.193998, y: -3.8376172, z: 0.49093872}
+      rotation: {x: 0.49999976, y: 0.5000003, z: 0.50000024, w: 0.49999967}
+      scale: {x: 1, y: 1, z: 1}
+    - name: window_197
+      parentName: Group674
+      position: {x: 4.193998, y: -1.9527929, z: 0.49093872}
+      rotation: {x: 0.49999976, y: 0.5000003, z: 0.50000024, w: 0.49999967}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Group675
+      parentName: House_05(Clone)
+      position: {x: 108.27435, y: 0, z: 15.888585}
+      rotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1.2322, y: 1.2322, z: 1.2322}
+    - name: Cylinder1721
+      parentName: Group675
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.831134, y: 0.831134, z: 0.831134}
+    - name: GeoSphere007
+      parentName: Group675
+      position: {x: -0, y: 0, z: 0.27756363}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Group676
+      parentName: House_05(Clone)
+      position: {x: 108.86624, y: 0.34875137, z: 15.306271}
+      rotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15915
+      parentName: Group676
+      position: {x: -0.079362795, y: -0.1625, z: 0.0000007629394}
+      rotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Object370
+      parentName: Group676
+      position: {x: 0.0000012207031, y: 0, z: 0.0000006866455}
+      rotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Group677
+      parentName: House_05(Clone)
+      position: {x: 112.998985, y: 3.527387, z: 15.22004}
+      rotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder1722
+      parentName: Group677
+      position: {x: 0.15058716, y: -0.029365234, z: -3.1987529}
+      rotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Object371
+      parentName: Group677
+      position: {x: 0.15058716, y: -0.029365234, z: -0.86342984}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Object372
+      parentName: Group677
+      position: {x: 0.15058716, y: -0.029365234, z: 2.1458185}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Object373
+      parentName: Group677
+      position: {x: 0.15058716, y: -0.029365234, z: 5.118399}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Object374
+      parentName: Group677
+      position: {x: 0.15058716, y: -0.029365234, z: -2.468301}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Group678
+      parentName: House_05(Clone)
+      position: {x: 105.046616, y: 3.527387, z: 10.801535}
+      rotation: {x: -0.7071068, y: 0.000000061817246, z: 0.000000061817246, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cylinder1723
+      parentName: Group678
+      position: {x: 0.15058593, y: -0.029370116, z: -3.1987529}
+      rotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Object375
+      parentName: Group678
+      position: {x: 0.15058593, y: -0.029370116, z: -0.86342984}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Object376
+      parentName: Group678
+      position: {x: 0.15058593, y: -0.029370116, z: 2.1458185}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Object377
+      parentName: Group678
+      position: {x: 0.15058593, y: -0.029370116, z: 5.118399}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Object378
+      parentName: Group678
+      position: {x: 0.15058593, y: -0.029370116, z: -2.468301}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Group679
+      parentName: House_05(Clone)
+      position: {x: 111.13415, y: 9.477741, z: 11.956329}
+      rotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15917
+      parentName: Group679
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15918
+      parentName: Group679
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Group680
+      parentName: House_05(Clone)
+      position: {x: 109.43869, y: 9.477742, z: 12.050635}
+      rotation: {x: -0.5213338, y: 0.47771442, z: 0.47771442, w: 0.5213338}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15919
+      parentName: Group680
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15920
+      parentName: Group680
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Group681
+      parentName: House_05(Clone)
+      position: {x: 111.9493, y: 9.477741, z: 13.220635}
+      rotation: {x: -0.7064338, y: 0.030843556, z: 0.030843556, w: 0.7064338}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15921
+      parentName: Group681
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15922
+      parentName: Group681
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Group682
+      parentName: House_05(Clone)
+      position: {x: 111.81011, y: 9.477742, z: 14.52085}
+      rotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1.474075, y: 1.474075, z: 1.474075}
+    - name: Cylinder1724
+      parentName: Group682
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 2.137268e-15, w: 1}
+      scale: {x: 0.831134, y: 0.831134, z: 0.831134}
+    - name: GeoSphere008
+      parentName: Group682
+      position: {x: -0, y: 0, z: 0.27756408}
+      rotation: {x: 0, y: 0, z: 1.7763568e-15, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Group683
+      parentName: House_05(Clone)
+      position: {x: 107.09937, y: 9.477743, z: 12.641437}
+      rotation: {x: -0.70441604, y: -0.06162845, z: -0.06162845, w: 0.70441604}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15923
+      parentName: Group683
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15924
+      parentName: Group683
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Group684
+      parentName: House_05(Clone)
+      position: {x: 107.12908, y: 9.477743, z: 14.35212}
+      rotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1.474075, y: 1.474075, z: 1.474075}
+    - name: Cylinder1725
+      parentName: Group684
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 2.137268e-15, w: 1}
+      scale: {x: 0.831134, y: 0.831134, z: 0.831134}
+    - name: GeoSphere009
+      parentName: Group684
+      position: {x: -0, y: 0, z: 0.3247223}
+      rotation: {x: 0, y: 0, z: 1.7763568e-15, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: StraightStair015
+      parentName: House_05(Clone)
+      position: {x: 110.12704, y: 0, z: 16.367853}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Plane102
+      parentName: House_05(Clone)
+      position: {x: 109.465485, y: 0, z: 13.36567}
+      rotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: TextPlus009
+      parentName: House_05(Clone)
+      position: {x: 106.69826, y: 2.4814966, z: 15.445069}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15925
+      parentName: House_05(Clone)
+      position: {x: 110.214966, y: 0.41509473, z: 10.664953}
+      rotation: {x: -0.7071068, y: 0.000000061817246, z: 0.000000061817246, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15926
+      parentName: House_05(Clone)
+      position: {x: 110.17317, y: 0.22908585, z: 10.701457}
+      rotation: {x: -0.7071068, y: 0.000000061817246, z: 0.000000061817246, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15927
+      parentName: House_05(Clone)
+      position: {x: 108.327225, y: 3.4454882, z: 10.664953}
+      rotation: {x: -0.7071068, y: 0.000000061817246, z: 0.000000061817246, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15928
+      parentName: House_05(Clone)
+      position: {x: 108.28543, y: 3.2594793, z: 10.701457}
+      rotation: {x: -0.7071068, y: 0.000000061817246, z: 0.000000061817246, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15929
+      parentName: House_05(Clone)
+      position: {x: 110.82422, y: 6.4393725, z: 10.664953}
+      rotation: {x: -0.7071068, y: 0.000000061817246, z: 0.000000061817246, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Box15930
+      parentName: House_05(Clone)
+      position: {x: 110.78242, y: 6.2533636, z: 10.701457}
+      rotation: {x: -0.7071068, y: 0.000000061817246, z: 0.000000061817246, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Rectangle025
+      parentName: House_05(Clone)
+      position: {x: 113.072556, y: 0, z: 15.618191}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: street_light_008
+      parentName: House_05(Clone)
+      position: {x: 104.97787, y: 0, z: 17.402395}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
