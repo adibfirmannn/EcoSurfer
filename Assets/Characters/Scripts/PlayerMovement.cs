@@ -1,6 +1,8 @@
+﻿using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -18,6 +20,10 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckRadius = 0.3f;
     public LayerMask groundLayer;
 
+    [Header("Speed Limit")]
+    public float maxForwardSpeed = 15f; // bisa kamu sesuaikan
+
+
     private int targetLane = 1; // 0 = kiri, 1 = tengah, 2 = kanan
     private Rigidbody rb;
     private Animator anim;
@@ -32,30 +38,40 @@ public class PlayerMovement : MonoBehaviour
     private bool isRolling = false;
     public float rollDuration = 1f;
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
-        Physics.gravity *= gravityModifier;
+        //Physics.gravity *= gravityModifier;
+        Physics.gravity = new Vector3(0, -9.81f * gravityModifier, 0);
 
         if (groundChecker == null)
         {
             Debug.LogWarning("GroundChecker is not assigned.");
         }
+       
+
+        ScoreManager.Instance.ResumeScoring();
+
     }
 
     void Update()
     {
-        if (isGameOver) return;
+        if (!isGameOver)
+        {
+            MoveForward();
+            HandleLaneSwitch();
+            HandleJump();
+            HandleRoll();
+            CheckSpeedIncrease();
+        }
 
-        MoveForward();
-        HandleLaneSwitch();
-        HandleJump();
-        HandleRoll();
+        // Tetap cek grounding meskipun game over
         CheckGrounded();
         UpdateAnimationStates();
-        CheckSpeedIncrease();
     }
+
 
     void FixedUpdate()
     {
@@ -63,13 +79,7 @@ public class PlayerMovement : MonoBehaviour
         // CheckGrounded();
     }
 
-    IEnumerator RestartGame()
-    {
-        yield return new WaitForSeconds(2f); // Tunggu 2 detik sebelum restart
-        UnityEngine.SceneManagement.SceneManager.LoadScene(
-            UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
-        );
-    }
+   
 
 
     void MoveForward()
@@ -166,26 +176,92 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (isGameOver) return;
+
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            // HAPUS pengecekan !isRolling agar selalu mati saat tabrakan
             isGameOver = true;
             anim.SetTrigger("DeathTrig");
-            forwardSpeed = 0;
-            rb.linearVelocity = Vector3.zero;
-            ScoreManager.Instance.StopScoring();
-            StartCoroutine(RestartGame());
+
+            rb.linearVelocity = Vector3.zero;           // Ganti dari linearVelocity
+            rb.angularVelocity = Vector3.zero;
+            rb.isKinematic = true;
+            rb.useGravity = false;
+
+            StartCoroutine(ForceFallAndShowGameOver());
+        }
+    }
+
+
+    IEnumerator ForceFallAndShowGameOver()
+    {
+        float duration = 0.5f;
+        float elapsed = 0f;
+
+        Vector3 startPos = transform.position;
+        RaycastHit hit;
+        Vector3 groundPos = startPos;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 10f, groundLayer))
+        {
+            groundPos.y = hit.point.y + 0.1f;
+        }
+        else
+        {
+            groundPos.y = startPos.y - 3f;
         }
 
+        while (elapsed < duration)
+        {
+            transform.position = Vector3.Lerp(startPos, groundPos, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = groundPos;
+
+        ScoreManager.Instance.StopScoring();
+
+        yield return new WaitForSeconds(3f);
+
+        ScoreManager.Instance.ResetScore();
+
+        // Tampilkan game over UI di sini
+        if (GameOverManager.Instance != null)
+        {
+            GameOverManager.Instance.ShowGameOverUI();
+        }
+        else
+        {
+            Debug.LogError("GameOverManager.Instance null");
+        }
     }
+
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f; // Resume time
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    
+
+
 
     void CheckSpeedIncrease()
     {
         int currentScore = ScoreManager.Instance.GetScore();
         if (currentScore >= lastScoreCheckpoint + scoreStep)
         {
-            forwardSpeed += speedIncrement;
-            lastScoreCheckpoint = currentScore;
-            Debug.Log("Speed increased! Current Speed: " + forwardSpeed);
+            if (forwardSpeed < maxForwardSpeed)
+            {
+                forwardSpeed += speedIncrement;
+                forwardSpeed = Mathf.Min(forwardSpeed, maxForwardSpeed); // pastikan tidak melebihi
+                lastScoreCheckpoint = currentScore;
+                Debug.Log("Speed increased! Current Speed: " + forwardSpeed);
+            }
         }
     }
+
 }
