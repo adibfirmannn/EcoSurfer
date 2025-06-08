@@ -270,17 +270,16 @@ MonoBehaviour:
   - {fileID: 2331424834515882607, guid: 9e6770c68b0cf7745b45632e12c8ee7d, type: 3}
   - {fileID: 3877033454485709705, guid: 73399c031b50f7d4fa4edd72585a342b, type: 3}
   - {fileID: 7086893751255947565, guid: 67d00f09731679349b0f7a51207d4d6c, type: 3}
-  trashPrefabsLegacy:
+  trashPrefabs:
   - {fileID: 3530430893054774574, guid: d90f1eaa94d25404eb1623987d6538fd, type: 3}
   portalPrefabs:
-  - {fileID: 5837871848979028623, guid: 401864c5e581f744db680a7c21a77a66, type: 3}
+  - {fileID: 885655380925687247, guid: 39225566aa69d3c4bb4a817f9bae416d, type: 3}
+  - {fileID: 1761029658654954574, guid: 8e49a87dd5b946e4cb3fb87973e4d1b0, type: 3}
+  - {fileID: 5191608157157961364, guid: f5ea75ee800c8bb4a82be41b9df2985e, type: 3}
   player: {fileID: 736329454}
   spawnZ: 30
   spawnInterval: 15
-  trashPrefabs:
-  - {fileID: 1764992499993841449, guid: d90f1eaa94d25404eb1623987d6538fd, type: 3}
-  trashSpawnRate: 2
-  trashSpawnPoints: []
+  portalSpawnDistance: 8
 --- !u!4 &98397594
 Transform:
   m_ObjectHideFlags: 0

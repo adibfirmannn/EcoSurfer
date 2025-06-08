@@ -4,37 +4,24 @@ using System.Collections.Generic;
 
 public class SpawnManager : MonoBehaviour
 {
-    [Header("Obstacle & Trash Settings")]
+    [Header("Prefab Settings")]
     public GameObject[] obstaclePrefabs;
-    public GameObject[] trashPrefabsLegacy; // Legacy trash untuk SpawnRow
+    public GameObject[] trashPrefabs;
     public GameObject[] portalPrefabs;
 
+    [Header("Player Reference")]
     public Transform player;
-    public float spawnZ = 30f;
-    public float spawnInterval = 15f;
 
-    private int maxTrash = 10;
-    private int trashSpawned = 0;
-    private int trashSinceLastPortal = 0;
-    private List<GameObject> activeObjects = new List<GameObject>();
-
+    [Header("Spawn Settings")]
+    public float spawnZ = 30f;          // Jarak spawn dari player
+    public float spawnInterval = 15f;   // Jarak antar spawn
     private float lastSpawnZ;
     private bool gameStarted = false;
-
-    [Header("Trash Spawning - EcoSurfer")]
-    public TrashItem[] trashPrefabs; // Prefab trash versi baru
-    public float trashSpawnRate = 2f;
-    public Transform[] trashSpawnPoints;
+    public float portalSpawnDistance = 100f;  // jarak portal dari posisi sampah (bisa kamu atur)
 
     void Start()
     {
-        StartCoroutine(StartSpawningAfterDelay(5f)); // tunggu 5 detik (bukan 20)
-
-        // Mulai pemanggilan berkala untuk spawn trash
-        if (trashPrefabs.Length > 0 && trashSpawnPoints.Length > 0)
-        {
-            InvokeRepeating("SpawnRandomTrash", 2f, trashSpawnRate);
-        }
+        StartCoroutine(StartSpawningAfterDelay(3f));
     }
 
     IEnumerator StartSpawningAfterDelay(float delay)
@@ -69,38 +56,39 @@ public class SpawnManager : MonoBehaviour
             } while (usedLanes.Contains(lane));
             usedLanes.Add(lane);
 
-            Vector3 pos = new Vector3(lane * 2f, 1.3f, zPos);
-            GameObject obj = Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], pos, Quaternion.identity);
-            activeObjects.Add(obj);
+            Vector3 obstaclePos = new Vector3(lane * 2f, 1.3f, zPos);
+            Instantiate(obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)], obstaclePos, Quaternion.identity);
         }
 
-        if (trashSpawned < maxTrash && trashPrefabsLegacy.Length > 0)
+        if (trashPrefabs.Length > 0)
         {
-            int lane = Random.Range(-1, 2);
-            Vector3 trashPos = new Vector3(lane * 2f, 2f, zPos + 2f);
-            GameObject trash = Instantiate(trashPrefabsLegacy[Random.Range(0, trashPrefabsLegacy.Length)], trashPos, Quaternion.identity);
-            trashSpawned++;
-            trashSinceLastPortal++;
-            activeObjects.Add(trash);
-        }
+            int trashLane = Random.Range(-1, 2);
+            Vector3 trashPos = new Vector3(trashLane * 2f, 2f, zPos + 2f);
+            Instantiate(trashPrefabs[Random.Range(0, trashPrefabs.Length)], trashPos, Quaternion.identity);
 
-        if (trashSinceLastPortal >= 6 && trashSpawned > 0)
-        {
-            int lane = Random.Range(-1, 2);
-            Vector3 portalPos = new Vector3(lane * 2f, 3f, zPos + 5f);
-            GameObject portal = Instantiate(portalPrefabs[Random.Range(0, portalPrefabs.Length)], portalPos, Quaternion.identity);
-            activeObjects.Add(portal);
-            trashSinceLastPortal = 0;
+            int portalLane;
+            do
+            {
+                portalLane = Random.Range(-1, 2);
+            } while (portalLane == trashLane);
+
+            float offsetX = -0.8f;  // posisi X portal yang sudah pas
+            float offsetY = -0.5f;  // posisi Y portal yang sudah pas
+
+            Vector3 portalPos = new Vector3(portalLane * 2f + offsetX, 1.5f + offsetY, trashPos.z + portalSpawnDistance);
+
+            Debug.Log("Portal spawned at: " + portalPos);
+
+            GameObject portal = Instantiate(portalPrefabs[Random.Range(0, portalPrefabs.Length)], portalPos, portalPrefabs[0].transform.rotation);
+
+            Rigidbody rb = portal.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.useGravity = false;
+                rb.linearVelocity = Vector3.zero;
+            }
         }
     }
 
-    void SpawnRandomTrash()
-    {
-        if (trashPrefabs.Length > 0 && trashSpawnPoints.Length > 0)
-        {
-            TrashItem randomTrash = trashPrefabs[Random.Range(0, trashPrefabs.Length)];
-            Transform spawnPoint = trashSpawnPoints[Random.Range(0, trashSpawnPoints.Length)];
-            Instantiate(randomTrash, spawnPoint.position, spawnPoint.rotation);
-        }
-    }
+
 }
