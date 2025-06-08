@@ -71,28 +71,37 @@ public class Portal : MonoBehaviour
         int wrongItems = 0;
         int totalScore = 0;
 
-        // Process semua item di inventory
-        for (int i = 0; i < inventory.trashSlots.Length; i++)
-        {
-            TrashSlot slot = inventory.trashSlots[i];
+        int selectedIndex = inventory.selectedSlotIndex;
 
-            if (!slot.isEmpty)
+        if (selectedIndex >= 0 && selectedIndex < inventory.trashSlots.Length)
+        {
+            TrashSlot selectedSlot = inventory.trashSlots[selectedIndex];
+
+            Debug.Log($"[PORTAL] Selected slot: {selectedIndex}");
+            if (!selectedSlot.isEmpty && selectedSlot.currentItem != null)
             {
-                if (slot.currentItem.itemType == acceptedCategory)
+                Debug.Log($"[PORTAL] Item in slot: {selectedSlot.currentItem.itemName}, Type: {selectedSlot.currentItem.itemType}");
+            }
+            else
+            {
+                Debug.LogWarning("[PORTAL] Slot kosong atau item NULL!");
+            }
+
+
+            if (!selectedSlot.isEmpty)
+            {
+                if (selectedSlot.currentItem.itemType == acceptedCategory)
                 {
-                    // Item benar
                     correctItems++;
-                    totalScore += slot.currentItem.pointValue;
+                    totalScore += selectedSlot.currentItem.pointValue;
+                    inventory.RemoveItem(selectedIndex); // Buang hanya item yang cocok
                 }
                 else
                 {
-                    // Item salah
                     wrongItems++;
-                    totalScore -= slot.currentItem.pointValue; // Minus point
+                    totalScore -= selectedSlot.currentItem.pointValue;
+                    // Tidak dibuang jika salah, tetap dipegang
                 }
-
-                // Clear slot
-                inventory.RemoveItem(i);
             }
         }
 
@@ -106,6 +115,8 @@ public class Portal : MonoBehaviour
         yield return StartCoroutine(ShowFeedback(correctItems, wrongItems, totalScore));
 
         isProcessing = false;
+
+
     }
 
     IEnumerator ShowFeedback(int correct, int wrong, int totalScore)

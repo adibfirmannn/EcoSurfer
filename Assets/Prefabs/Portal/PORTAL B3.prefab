@@ -63,5 +63,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9da19d45a6f2376419f12888536ca831, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3861940933777969130}
   m_SourcePrefab: {fileID: 100100000, guid: 9da19d45a6f2376419f12888536ca831, type: 3}
+--- !u!1 &1761029658654954574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9da19d45a6f2376419f12888536ca831, type: 3}
+  m_PrefabInstance: {fileID: 1490980601224980767}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-3861940933777969130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761029658654954574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04e86acb0fa21f4cbac697da2d8ff7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceptedCategory: 0
+  portalColor: {r: 1, g: 1, b: 1, a: 1}
+  correctEffect: {fileID: 0}
+  wrongEffect: {fileID: 0}
+  feedbackDuration: 1
+  portalSprite: {fileID: 0}
+  categoryLabel: {fileID: 0}

@@ -5,6 +5,9 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
 
+    [Header("Selection")]
+    public int selectedSlotIndex = 0; // Tidak ada yang dipilih secara default
+
     [Header("Inventory Settings")]
     public int maxSlots = 5;
     public TrashSlot[] trashSlots;
@@ -123,31 +126,47 @@ public class InventoryManager : MonoBehaviour
         return GetTotalItems() >= maxSlots;
     }
 
+    void HighlightSelectedSlot()
+    {
+        for (int i = 0; i < toolbarSlotUI.Length; i++)
+        {
+            if (toolbarSlotUI[i] != null)
+            {
+                Image bg = toolbarSlotUI[i].GetComponent<Image>();
+                if (bg != null)
+                {
+                    bg.color = (i == selectedSlotIndex) ? Color.yellow : Color.white;
+                }
+            }
+        }
+    }
+
     void Update()
     {
-        // Debug keys
+        // Pilih slot dengan tombol 1-6
+        for (int i = 0; i < maxSlots; i++)
+        {
+            if (Input.GetKeyDown((KeyCode)((int)KeyCode.Alpha1 + i)))
+            {
+                selectedSlotIndex = i;
+                Debug.Log("Selected Slot: " + (i + 1));
+                HighlightSelectedSlot();
+            }
+        }
+
+        // Debugging
         if (Input.GetKeyDown(KeyCode.I))
         {
-            // Debug inventory status
             Debug.Log($"=== INVENTORY STATUS ===");
             Debug.Log($"Total Items: {GetTotalItems()}/{maxSlots}");
-
             for (int i = 0; i < trashSlots.Length; i++)
             {
-                if (!trashSlots[i].isEmpty)
-                {
-                    Debug.Log($"Slot {i}: {trashSlots[i].currentItem.itemName} ({trashSlots[i].currentItem.itemType})");
-                }
-                else
-                {
-                    Debug.Log($"Slot {i}: EMPTY");
-                }
+                Debug.Log($"Slot {i}: {(trashSlots[i].isEmpty ? "EMPTY" : trashSlots[i].currentItem.itemName)}");
             }
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            // Clear inventory untuk testing
             for (int i = 0; i < trashSlots.Length; i++)
             {
                 RemoveItem(i);
