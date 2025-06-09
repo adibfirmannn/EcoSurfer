@@ -10,7 +10,7 @@ public class ItemData : ScriptableObject
     public string itemName;
     public ItemType itemType;
     public Sprite itemSprite;
-    public int pointValue = 10;
+    public int pointValue = 5;
 
     [Header("Visual Effects")]
     public Color itemColor = Color.white;

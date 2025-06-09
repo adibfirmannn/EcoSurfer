@@ -19,11 +19,12 @@ public class ScoreManager : MonoBehaviour
     }
 
     private int score = 0;
+    private int terbuang = 0;
 
     [Header("Auto Score Settings")]
     public bool isRunning = true;
-    public float scoreInterval = 0.5f;      
-    public int scorePerInterval = 1;       
+    public float scoreInterval = 0.5f;
+    public int scorePerInterval = 1;
     private float timer = 0f;
 
     private void Awake()
@@ -52,18 +53,34 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int value)
     {
         score += value;
-        Debug.Log($"Score: {score}");
+        Debug.Log($"Score: {score} | Terbuang: {terbuang} | Total: {GetTotalScore()}");
     }
 
     public void SubtractScore(int value)
     {
         score -= value;
-        Debug.Log($"Score: {score}");
+        Debug.Log($"Score: {score} | Terbuang: {terbuang} | Total: {GetTotalScore()}");
+    }
+
+    public void AddTerbuang(int value)
+    {
+        terbuang += value;
+        Debug.Log($"Terbuang ditambahkan: {value} | Total Terbuang: {terbuang} | Total: {GetTotalScore()}");
     }
 
     public int GetScore()
     {
         return score;
+    }
+
+    public int GetTerbuang()
+    {
+        return terbuang;
+    }
+
+    public int GetTotalScore()
+    {
+        return score + terbuang;
     }
 
     public void StopScoring()
@@ -79,7 +96,7 @@ public class ScoreManager : MonoBehaviour
     public void ResetScore()
     {
         score = 0;
+        terbuang = 0;
         timer = 0f;
     }
-   
 }

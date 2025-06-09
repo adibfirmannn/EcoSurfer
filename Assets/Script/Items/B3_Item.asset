@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: B3_Item
   m_EditorClassIdentifier: 
   itemName: Limbah B3
-  itemType: 0
-  itemSprite: {fileID: 0}
+  itemType: 2
+  itemSprite: {fileID: 21300000, guid: 1a5dce8710fbae749b597fc8b02814d2, type: 3}
   pointValue: 10
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   pickupEffect: {fileID: 0}

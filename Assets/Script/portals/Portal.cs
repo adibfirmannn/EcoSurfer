@@ -93,9 +93,20 @@ public class Portal : MonoBehaviour
                 if (selectedSlot.currentItem.itemType == acceptedCategory)
                 {
                     correctItems++;
-                    totalScore += selectedSlot.currentItem.pointValue;
+                    int point = selectedSlot.currentItem.pointValue;
+
+                    Debug.Log($"Point item: {point}"); 
+                    totalScore += point;
+
+                    if (point >= 5)
+                    {
+                        ScoreManager.Instance?.AddTerbuang(point-5);
+                        // Tambah ke terbuang jika nilai 5
+                    }
+
                     inventory.RemoveItem(selectedIndex); // Buang hanya item yang cocok
                 }
+
                 else
                 {
                     wrongItems++;

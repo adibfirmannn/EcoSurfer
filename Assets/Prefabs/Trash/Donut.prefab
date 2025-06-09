@@ -64,39 +64,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Donut
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f723df2afae0d3c4d82c2781c045ced6, type: 3}
+      propertyPath: m_TagString
+      value: Trash
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f723df2afae0d3c4d82c2781c045ced6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4833358408450153078}
+      addedObject: {fileID: 3918395072964108540}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f723df2afae0d3c4d82c2781c045ced6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3918395072964108540}
+      addedObject: {fileID: 4833358408450153078}
   m_SourcePrefab: {fileID: 100100000, guid: f723df2afae0d3c4d82c2781c045ced6, type: 3}
 --- !u!1 &6128694363217783299 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f723df2afae0d3c4d82c2781c045ced6, type: 3}
   m_PrefabInstance: {fileID: 6470571901936064338}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4833358408450153078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6128694363217783299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 822d5a19833dc90459386d33d477f0cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: bd189fcc1f0bb6f438d4497df90c95d3, type: 2}
-  pickupRadius: 1
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!65 &3918395072964108540
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -118,3 +105,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4833358408450153078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6128694363217783299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 822d5a19833dc90459386d33d477f0cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: bd189fcc1f0bb6f438d4497df90c95d3, type: 2}
+  pickupRadius: 1
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256

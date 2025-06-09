@@ -26,19 +26,42 @@ public class TrashItem : MonoBehaviour
         pickupCollider.radius = pickupRadius;
     }
 
+    //void SetupVisuals()
+    //{
+    //    if (itemData != null && itemData.itemSprite != null)
+    //    {
+    //        // Setup sprite renderer
+    //        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+    //        if (spriteRenderer == null)
+    //            spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+
+    //        spriteRenderer.sprite = itemData.itemSprite;
+    //        spriteRenderer.color = itemData.itemColor;
+    //    }
+    //}
+
     void SetupVisuals()
     {
         if (itemData != null && itemData.itemSprite != null)
         {
-            // Setup sprite renderer
-            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-            if (spriteRenderer == null)
-                spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+            // Hanya tambahkan SpriteRenderer jika TIDAK punya MeshFilter (berarti bukan objek 3D)
+            if (GetComponent<MeshFilter>() == null)
+            {
+                SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+                if (spriteRenderer == null)
+                    spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
 
-            spriteRenderer.sprite = itemData.itemSprite;
-            spriteRenderer.color = itemData.itemColor;
+                spriteRenderer.sprite = itemData.itemSprite;
+                spriteRenderer.color = itemData.itemColor;
+            }
+            else
+            {
+                // Objek ini 3D, jadi jangan tambahkan SpriteRenderer
+                Debug.Log($"{name} is 3D object, skipping sprite setup.");
+            }
         }
     }
+
 
     void OnTriggerEnter(Collider other)
     {

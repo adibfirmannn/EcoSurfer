@@ -22,6 +22,7 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(StartSpawningAfterDelay(3f));
+        Debug.Log("TrashItem ACTIVE: " + gameObject.name + " | pos: " + transform.position);
     }
 
     IEnumerator StartSpawningAfterDelay(float delay)
