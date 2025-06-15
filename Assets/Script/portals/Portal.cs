@@ -98,11 +98,12 @@ public class Portal : MonoBehaviour
                     Debug.Log($"Point item: {point}"); 
                     totalScore += point;
 
-                    if (point >= 5)
-                    {
-                        ScoreManager.Instance?.AddTerbuang(point-5);
-                        // Tambah ke terbuang jika nilai 5
-                    }
+                    //if (point >= 5)
+                    //{
+                       
+                    //    // Tambah ke terbuang jika nilai 5
+                    //}
+                    ScoreManager.Instance?.AddTerbuang(point);
 
                     inventory.RemoveItem(selectedIndex); // Buang hanya item yang cocok
                 }

@@ -15,6 +15,6 @@ MonoBehaviour:
   itemName: Sampah Anorganik
   itemType: 1
   itemSprite: {fileID: 21300000, guid: f5c215fd6b8086541af4a0a294f53196, type: 3}
-  pointValue: 10
+  pointValue: 5
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   pickupEffect: {fileID: 0}

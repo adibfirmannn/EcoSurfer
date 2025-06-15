@@ -15,6 +15,6 @@ MonoBehaviour:
   itemName: Limbah B3
   itemType: 2
   itemSprite: {fileID: 21300000, guid: 1a5dce8710fbae749b597fc8b02814d2, type: 3}
-  pointValue: 10
+  pointValue: 5
   itemColor: {r: 1, g: 1, b: 1, a: 1}
   pickupEffect: {fileID: 0}
